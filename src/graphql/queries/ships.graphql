@@ -1,0 +1,8 @@
+query allShips {
+  ships {
+    image
+    active
+    id
+    name
+  }
+}
