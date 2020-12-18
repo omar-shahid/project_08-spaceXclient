@@ -4,5 +4,7 @@ query allShips {
     active
     id
     name
+    type
+    mmsi
   }
 }

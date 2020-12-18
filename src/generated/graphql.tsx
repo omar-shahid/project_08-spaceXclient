@@ -1329,7 +1329,7 @@ export type AllShipsQuery = (
   { __typename?: 'Query' }
   & { ships?: Maybe<Array<Maybe<(
     { __typename?: 'Ship' }
-    & Pick<Ship, 'image' | 'active' | 'id' | 'name'>
+    & Pick<Ship, 'image' | 'active' | 'id' | 'name' | 'type' | 'mmsi'>
   )>>> }
 );
 
@@ -1341,6 +1341,8 @@ export const AllShipsDocument = gql`
     active
     id
     name
+    type
+    mmsi
   }
 }
     `;

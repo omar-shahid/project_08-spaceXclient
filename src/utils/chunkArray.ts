@@ -1,4 +1,4 @@
-export const chunkArray = (arr: unknown[], size: number) => {
+export const chunkArray = <T>(arr: T[], size: number) => {
     const newArr = []
     for (let i=0; i<arr.length; i+= size){
        let chunk = []
