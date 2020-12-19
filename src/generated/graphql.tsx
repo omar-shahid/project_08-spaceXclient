@@ -1322,6 +1322,23 @@ export type CoreMission = {
   flight?: Maybe<Scalars['Int']>;
 };
 
+export type ShipDetailsQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type ShipDetailsQuery = (
+  { __typename?: 'Query' }
+  & { ship?: Maybe<(
+    { __typename?: 'Ship' }
+    & Pick<Ship, 'successful_landings' | 'weight_kg' | 'weight_lbs' | 'year_built' | 'type' | 'status' | 'speed_kn' | 'roles' | 'name' | 'model' | 'mmsi' | 'imo' | 'image' | 'home_port' | 'course_deg' | 'class' | 'attempted_landings' | 'active' | 'abs'>
+    & { missions?: Maybe<Array<Maybe<(
+      { __typename?: 'ShipMission' }
+      & Pick<ShipMission, 'name' | 'flight'>
+    )>>> }
+  )> }
+);
+
 export type AllShipsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1334,6 +1351,61 @@ export type AllShipsQuery = (
 );
 
 
+export const ShipDetailsDocument = gql`
+    query shipDetails($id: ID!) {
+  ship(id: $id) {
+    successful_landings
+    weight_kg
+    weight_lbs
+    year_built
+    type
+    status
+    speed_kn
+    roles
+    name
+    model
+    mmsi
+    missions {
+      name
+      flight
+    }
+    imo
+    image
+    home_port
+    course_deg
+    class
+    attempted_landings
+    active
+    abs
+  }
+}
+    `;
+
+/**
+ * __useShipDetailsQuery__
+ *
+ * To run a query within a React component, call `useShipDetailsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useShipDetailsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useShipDetailsQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useShipDetailsQuery(baseOptions: Apollo.QueryHookOptions<ShipDetailsQuery, ShipDetailsQueryVariables>) {
+        return Apollo.useQuery<ShipDetailsQuery, ShipDetailsQueryVariables>(ShipDetailsDocument, baseOptions);
+      }
+export function useShipDetailsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ShipDetailsQuery, ShipDetailsQueryVariables>) {
+          return Apollo.useLazyQuery<ShipDetailsQuery, ShipDetailsQueryVariables>(ShipDetailsDocument, baseOptions);
+        }
+export type ShipDetailsQueryHookResult = ReturnType<typeof useShipDetailsQuery>;
+export type ShipDetailsLazyQueryHookResult = ReturnType<typeof useShipDetailsLazyQuery>;
+export type ShipDetailsQueryResult = Apollo.QueryResult<ShipDetailsQuery, ShipDetailsQueryVariables>;
 export const AllShipsDocument = gql`
     query allShips {
   ships {
