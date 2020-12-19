@@ -8,16 +8,15 @@ jobs:
     name: Deploying to surge
     steps:
       - uses: actions/checkout@v2
-      - uses: borales/actions-yarn@v1.22.5
       - name: Install Node.js
         uses: actions/setup-node@v2-beta
         with:
           node-version: 12
       - name: Installing dependencies
-        run: yarn install
+        run: npm install
       - name: Builiding Project
-        run: yarn run build
+        run: npm run build
       - name: Install Surge
-        run: yarn global add surge
+        run: npm add surge -g
       - name: Run surge
         run: surge ./build spacexships.surge.sh --token ${{ secrets.SURGE_TOKEN }}
