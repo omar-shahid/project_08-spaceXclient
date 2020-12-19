@@ -1,13 +1,13 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { ShipDetailsQuery, useShipDetailsQuery } from "../generated/graphql";
+import { useShipDetailsQuery } from "../generated/graphql";
 import Loader from "./Loader";
 
 interface Props {}
 
 const Details: React.FC<Props> = (props) => {
   const { id } = useParams<{ id: string }>();
-  const { data, loading, error } = useShipDetailsQuery({
+  const { data, loading } = useShipDetailsQuery({
     variables: {
       id,
     },

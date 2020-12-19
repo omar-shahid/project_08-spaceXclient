@@ -19,6 +19,6 @@ jobs:
       - name: Builiding Project
         run: yarn run build
       - name: Install Surge
-        run: yarn global add surge
+        run: npm install -g surge
       - name: Run surge
         run: surge ./build spacexships.surge.sh --token ${{ secrets.SURGE_TOKEN }}
