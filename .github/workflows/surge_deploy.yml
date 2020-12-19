@@ -12,11 +12,13 @@ jobs:
         uses: actions/setup-node@v2-beta
         with:
           node-version: 12
+      - name: Installing Yern
+        run: npm install -g yarn
       - name: Installing dependencies
-        run: npm install
+        run: yarn install
       - name: Builiding Project
-        run: npm run build
+        run: yarn run build
       - name: Install Surge
-        run: npm add surge -g
+        run: yarn global add surge
       - name: Run surge
         run: surge ./build spacexships.surge.sh --token ${{ secrets.SURGE_TOKEN }}
