@@ -20,7 +20,7 @@ const Details: React.FC<Props> = (props) => {
           <img
             src={data?.ship?.image!}
             alt={data?.ship?.name!}
-            className="w-100 max-w-6xl "
+            className="w-full max-w-6xl "
           />
         ) : (
           <div className="h-44 flex items-center bg-gray-300 justify-center">
